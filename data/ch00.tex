@@ -1,0 +1,357 @@
+\lecture{使用说明}{lec:introduction}
+\section{简介}
+% 这一主题的动机
+\begin{frame}{简介}{内容简介}
+  该主题称为\alert{西北农林科技大学 {\LaTeX} Beamer 主题}，其主要目的
+  是：
+  \begin{itemize}
+  \item<1-> 为广大西北农林科技大学师生提供一个简便易用的Beamer主题。
+  \item<2-> 建立标准、规范的演示文稿模板，提高我校师生演示文稿制作质
+    量。
+  \item<3-> 建立标准、规范的演示文稿模板，提高我校师生制作演示文稿效
+    率。
+  \item<4-> 推广\qtmark{所想即所得}的演示文稿编写模式，让我校广大师生将精力
+    注意在文档内容而不是格式上。
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{协议}
+% 协议
+\begin{frame}{简介}{协议}
+  \begin{itemize}
+  \item<1-> 该主题中使用的所有logo的版权属于西北农林科技大
+    学\href{http://www.nwsuaf.edu.cn}{http://www.nwsuaf.edu.cn}。
+  \item<2-> 若演示文稿中的署名为西北农林科技大学，则可以使用这些logo。
+  \item<3-> 使用本主题，请遵守 GNU 通用公共协议 v.3 (GPLv3)，有关该协议
+    详见：
+    \href{http://www.gnu.org/licenses/}{http://www.gnu.org/licenses/}。
+    在该协议的允许范围内，可以发布和修改本主题中的任何内容，
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\section{安装}
+% 通用安装
+\begin{frame}{安装}{概述}
+  本主题包含4个文件：
+  \begin{enumerate}
+  \item {\tt beamerthemeNWSUAFsidebar.sty}
+  \item {\tt beamerinnerthemeNWSUAFsidebar.sty}
+  \item {\tt beamerouterthemeNWSUAFsidebar.sty}
+  \item {\tt beamercolorthemeNWSUAFsidebar.sty}
+  \end{enumerate}
+  可以安装为本地使用，也可以安装为全局使用。\pause
+  \begin{block}{本地安装}
+    将本主题的4个文件拷贝到当前工作文件夹，即可使用该主题。
+  \end{block}
+\end{frame}
+
+% 通用安装
+\begin{frame}{安装}{全局安装}
+  \begin{block}{全局安装}
+    \begin{itemize}
+    \item 如果希望所有用户都能使用这一主题，则应该将该主题安装到本
+      地{\LaTeX}目录树中.
+    \item 假设这一目录结构为 {\tt <dirstruct>}。\alert{注意}：如果安装
+      了其它的宏包，目录中可能有些内容已存在，此时只需要简单合并 {\tt
+        <dirstruct>}即可使用该主题。
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\subsection{GNU/Linux}
+% GNU/Linux中的安装
+\begin{frame}{安装}{GNU/Linux}  
+  \begin{block}{Ubuntu中的TeX Live}
+    \begin{enumerate}
+    \item 将 {\tt <dirstruct>} 拷贝到本地{\LaTeX}目录树的根目录. 默认是\\
+      {\tt \textasciitilde /texmf}\\
+      如果根目录不存在，则创建该目录。 符号 {\tt \textasciitilde} 表示
+      家目录, 例如：{\tt /home/<username>}
+    \item 在终端中运行如下命令\\
+      {\tt \$ texhash \textasciitilde /texmf}
+    \end{enumerate}
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+% Microsoft Windows
+\begin{frame}{安装}{Microsoft Windows}
+  \begin{block}{Windows中的TeX Live}
+    假设使用默认目录（在高级 TeX Live 安装中，可以更改latex目录树的根目
+    录）。
+    \begin{enumerate}
+    \item 将 {\tt <dirstruct>} 拷贝到本地{\LaTeX}目录树的根目录\\
+      {\tt \%USERPROFILE\%\textbackslash texmf}\\
+      如果不存在，则创建. XP的默认目录是 {\tt \%USERPROFILE\%} 是\\
+      {\tt c:\textbackslash Document and
+        Settings\textbackslash<username>}，\\
+      Vista及更高版本是\\
+      {\tt c:\textbackslash Users\textbackslash<username>}
+    \item 打开 TeX Live 管理器对话框选择 'Actions'中的'Update filename
+      database'，并执行.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{Mac OS X}
+% Mac OS X的安装
+\begin{frame}{安装}{Mac OS X}
+  \begin{block}{Mac OS X中的 MacTeX}
+    将 {\tt <dirstruct>} 拷贝到本地latex目录树的根目录. 默认是\\
+    {\tt \textasciitilde /Library/texmf}\\
+    如果不存在，则创建. 符号 {\tt \textasciitilde} 表示家目录, 例
+    如：{\tt /home/<username>}
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{宏包依赖}
+% 宏包依赖
+\begin{frame}{安装}{宏包依赖}
+  除需要 Beamer 类外，本主题需要调用两个宏包
+  \begin{itemize}
+  \item TikZ\footnote{TikZ 是一个绘制图形的杰出宏包.请参
+      考\href{http://www.texample.net/tikz/examples/}{在线示
+        例} 或
+      \href{http://tug.ctan.org/tex-archive/graphics/pgf/base/doc/generic/pgf/pgfmanual.pdf}{pgf
+        用户手册}. }
+  \item calc
+  \end{itemize}
+  这些宏包是{\LaTeX}的通用宏包。
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\section{用户接口}
+\subsection{主题及选项}
+% 主题和选项列表
+\begin{frame}{用户接口}{加载主题和主题选项}
+  \begin{block}{演示文稿主题}
+    加载主题只需要输入\\
+    {\tt \textbackslash usetheme[<选项>]\{NWSUAFsidebar\}}\\
+    与加载其它主题方法一致，本主题会加载内部、外部和颜色主题并且可以传
+    递 {\tt <选项>} 参数.
+  \end{block}
+  \begin{block}{内部主题}
+    使用如下命令加载内部主题\\
+    {\tt \textbackslash useinnertheme\{NWSUAFsidebar\}}\\
+    内部主题无参数.
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+% 主题和选项列表
+\begin{frame}{用户接口}{加载主题和主题选项}
+  \begin{block}{外部主题}
+    使用如下命令加载外部主题\\
+    {\tt \textbackslash useoutertheme[<选项>]\{NWSUAFsidebar\}}\\
+    目前，外部主题的参数有：
+    \begin{itemize}
+      \scriptsize
+    \item {\tt hidetitle}: 隐藏边栏中的短标题
+    \item {\tt hideauthor}: 隐藏边栏中的作者缩写
+    \item {\tt hideinstitute}: 隐藏边栏底部的单位缩写
+    \item {\tt shownavsym}: 显示导航符号
+    \item {\tt left} or {\tt right}: 边栏位置 (默认在右边)
+    \item {\tt width=<length>}: 边栏宽度 (默认是 2 cm)
+      % 宽度指从垂直分割条的右边到slide的右边
+    \item {\tt hideothersubsections}: 除了当前section的subsection隐藏其
+      它所有 subsections
+    \item {\tt hideallsubsections}: 隐藏所有 subsections
+    \end{itemize}
+    最后4个选项继承于外部sidebar主题.
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+% 主题和选项列表
+\begin{frame}[allowframebreaks]{用户界面}{加载主题和主题选项}
+  \begin{block}{颜色主题}
+    使用如下命令载入颜色主题\\
+    {\tt \textbackslash usecolortheme[<选项>]\{NWSUAFsidebar\}}\\
+    目前，只支持1个选项
+    \begin{itemize}
+    \item {\tt lightheaderbg}: 使用浅色页眉背景 (目前是白色).
+    \end{itemize}
+    该选项创建浅色页眉
+  \end{block}
+  \pause
+  \begin{block}{颜色元素 {\tt NWSUAFsidebar}}
+    颜色主题定义了新的 beamer 颜色元素 {\tt NWSUAFsidebar} ，它们的前景
+    和背景颜色是：
+    \begin{itemize}
+    \item fg: {\usebeamercolor[fg]{NWSUAFsidebar}淡蓝
+        色 (\{RGB\}\{194,193,204\})}
+    \item bg: {\usebeamercolor[bg]{NWSUAFsidebar}深蓝
+        色 (\{RGB\}\{33,26,82\})}
+    \end{itemize}
+    可以采用标准的beamer命令的方式使用这些颜色，如：\\
+    {\tt \textbackslash usebeamercolor[<fg or
+      bg>]\{NWSUAFsidebar\}}. 详情请参考 beamer 用户手册
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{编译}
+% 编译
+\begin{frame}{用户界面}{编译}
+  \begin{block}{演示文稿的编译}
+    本主题需要至少编译 \alert{3} 次，以保证正确处理页码计数器的数字。
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{主题修改}
+% 如何修改主题
+{\setbeamercolor{NWSUAFsidebar}{fg=gray!50,bg=gray}
+  \setbeamercolor{sidebar}{bg=red!20}
+  \setbeamercolor{structure}{fg=red}
+  \setbeamercolor{frametitle}{use=structure,fg=structure.fg,bg=red!5}
+  \setbeamercolor{normal text}{bg=gray!20}
+  \begin{frame}{用户界面}{主题修改}
+    \begin{itemize}
+    \item<1-> 主题设置了默认的字体、颜色和布局。
+    \item<2-> 然而，可以使用beamer类提供的模板系统方便的修改指定的主题
+      元素，请参考beamer用户手册。
+    \item<3-> 例如，在这一页中，使用如下方式修改了主题元素
+      \begin{itemize}
+      \item 修改边栏颜色:\\
+        {\tt \textbackslash
+          setbeamercolor\{NWSUAFsidebar\}\{fg=gray!50,bg=gray\}} {\tt
+          \textbackslash setbeamercolor\{sidebar\}\{bg=red!20\}}
+      \item 修改结构元素颜色:\\
+        {\tt \textbackslash setbeamercolor\{structure\}\{fg=red\}}\\
+      \item 修改帧标题文本颜色和背景颜色: {\tt \textbackslash
+          setbeamercolor\{frametitle\}\{use=structure,
+          fg=structure.fg,bg=red!5\}}
+      \item 修改文本背景颜色{\tt \textbackslash setbeamercolor\{normal
+          text\}\{bg=gray!20\}}
+      \end{itemize}
+    \end{itemize}
+  \end{frame}}
+%%%%%%%%%%%%%%%%
+
+\subsection{波浪背景}
+% NWSUAF波浪背景图案
+\begin{frame}{用户界面}{波浪背景图案}
+  \begin{block}{波浪背景图案}
+    \begin{itemize}
+    \item<1-> 在这个演示文稿中，标题页和最后一页使用了波浪背景图案。
+      也可以在任意一个单独帧中用下述方法添加背景图案使用\\
+      {\tt \{\textbackslash NWSUAFwavesbg\\
+        \textbackslash begin\{frame\}[<选项>]\{帧标题\}\{帧子标题\}\\
+        \ldots\\
+        \textbackslash end\{frame\}\}}
+    \item<2-> 理想的方法是设计一个新的命令 {\tt NWSUAFwavesbg} 来添加这
+      一背景图案，但本主题中还未能实现，期待你的参与！
+    \end{itemize}
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{宽屏支持}
+% 宽屏支持
+\begin{frame}{用户界面}{宽屏支持}
+  \begin{block}{宽屏支持}
+    新式投影仪，甚至是现代的电视机已支持如 16:10 或 16:9 模式的宽屏模式.
+    Beamer (>= v. 3.10) 支持多种演示文稿的缩放比例。根据Beamer 用户手册
+    (v. 3.10)的77页的8.3节的说明，可以使用如下选项设置显示比例\\
+    {\tt\textbackslash documentclass[aspectratio=1610]\{beamer\}}\\
+    这一命令设置为 16:10. 也可以是 169, 149, 54, 43 (默认).
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
+
+\section{主题应用}
+{\setbeamercolor{NWSUAFsidebar}{fg=gray!50,bg=gray}
+ \setbeamercolor{sidebar}{bg=red!20}
+ \setbeamercolor{structure}{fg=red}
+ \setbeamercolor{frametitle}{use=structure,fg=structure.fg,bg=red!5}
+ \setbeamercolor{normal text}{bg=gray!20}
+ \subsection{文件夹结构}
+\begin{frame}{主题应用}{文件夹结构}
+  \begin{itemize}
+  \item 根目录
+    \begin{itemize}
+    \item {\tt data}$\longrightarrow$*.tex，演示文稿latex源代码（分文
+      件组织和管理）
+    \item {\tt figure}$\longrightarrow$插图文件
+    \item {\tt nwsuaflogo}$\longrightarrow$logo图像文件
+    \item {\tt setup}
+      \begin{itemize}
+      \item {\tt packages.tex}$\longrightarrow$宏包加载管理文件
+      \item {\tt format.tex}$\longrightarrow$参数配置及自定义命
+        令文件
+      \end{itemize}
+    \item {\tt beamerthemeNWSUAFsidebar.sty}$\longrightarrow$主题文件
+    \item {\tt beamerinnerthemeNWSUAFsidebar.sty}$\longrightarrow$内部
+      主题文件
+    \item {\tt beamerouterthemeNWSUAFsidebar.sty}$\longrightarrow$外部
+      主题文件
+    \item {\tt beamercolorthemeNWSUAFsidebar.sty}$\longrightarrow$颜色
+      主题文件
+    \item {\tt main.tex}$\longrightarrow$ 主控文件
+    \item {\tt Makefile}$\longrightarrow$ Make文件，{\tt make clean}用
+      于清理中间文件
+    \end{itemize}
+  \end{itemize}
+\end{frame}}
+%%%%%%%%%%%%%%%%
+
+\section{问题反馈}
+\subsection{已知问题}
+% 已知问题
+\begin{frame}{问题反馈}{已知问题}
+  \begin{description}
+  \item[重叠脚注] 这是旧版本beamer的问题，升级到最新版，可以解决这一问
+    题。请查
+    阅
+    \href{https://bitbucket.org/rivanvx/beamer/issue/200/width-of-footnote-in-a-sidebar-theme}{
+      错误报告}获取更多的细节.
+  \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{错误, 意见和建议}
+% 问题、意见和建议
+\begin{frame}{问题反馈}{错误、意见和建议}
+  \begin{itemize}
+  \item<1-> 本主题中会存在错误，如果发现了错误，请联系我进行改
+    进。\alert{再小的问题也是问题}。
+  \item<2-> 如果你有好建议和使用体验改善意见，请联系我进行改进。
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{联系方式}
+% 联系方式
+\begin{frame}{问题反馈}{联系方式}
+  请使用以下方式和我联系:
+  \begin{center}
+    \insertauthor\\
+    \href{mailto:nangeng@qq.com}\\
+    信息工程学院317\#\\
+    西北农林科技大学
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+% \tiny
+% \scriptsize
+% \footnotesize
+% \small
+% \normalsize
+% \large
+% \Large
+% \LARGE
+% \huge
+% \Huge
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../main.tex"
+%%% End: 

@@ -50,17 +50,17 @@
       {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\vspace*{\baselineskip}
 
       \begin{beamercolorbox}[wd=\beamer@plainpagewidth,center,sep=\baselineskip]{frametitle}%
-        {\usebeamerfont{date}\insertdate}\vspace*{\baselineskip}
-        
+        % {\usebeamerfont{date}\insertdate}\vspace*{\baselineskip}
+
         {\usebeamerfont{author}\insertauthor}\vspace*{\baselineskip}
-        
+
         {\usebeamerfont{institute}\insertinstitute}
       \end{beamercolorbox}\vspace*{\baselineskip}
-      
+
       {\inserttitlegraphic \\ 中国$\boldsymbol{\cdot}$杨凌 }\vspace*{\baselineskip}
     \end{minipage}
   }
- 
+
   % 封底页
   \defbeamertemplate{final page}{text}[1]{%
     \ifx\beamer@sidebarside\beamer@lefttext% 边栏在左边
@@ -83,7 +83,7 @@
     \setbeamertemplate{final page}[text]{#1}
     \usebeamertemplate{final page}
   }
-  
+
   % 设置背影图案
   \newcommand{\nwsuafwavesbg}{%
     \setbeamertemplate{background}{
@@ -93,10 +93,10 @@
       \tikzexternalenable
     }
   }
-  
+
   % 参考文献用数字标记
   \setbeamertemplate{bibliography item}[text]
-  
+
   % part页
   \AtBeginPart{\frame[plain]{\partpage}} % 添加一个平面如下定义的part页
   \defbeamertemplate*{part page}{sidebar theme}{%
@@ -118,7 +118,7 @@
 
 \mode<all>
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main.tex"
 %%% End:

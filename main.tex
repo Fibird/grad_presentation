@@ -1,7 +1,7 @@
 % 包含ctexbeamer文档类
 \documentclass[aspectratio=43, xcolor=svgnames, t, 10pt]{beamer}
 \usepackage{ctex}
-
+\usepackage{booktabs}%用于制作三线表
 \mode<presentation>
 % \documentclass[aspectratio=169]{beamer}
 % Sets aspect ratio to 16:9, and frame size to 160mm by 90mm.
@@ -24,19 +24,19 @@
 \input{setup/format.tex}
 
 % 打开PDF后直接全屏
-%\hypersetup{pdfpagemode={FullScreen}}
+\hypersetup{pdfpagemode={FullScreen}}
 
 % 设置标题==================================================
 \title[] % (可选，仅当标题过长时使用)
 {基于CUDA的并行快速铅笔画生成算法研究}
 
 %\subtitle{v\ 1.0} % 也可以是一个其它的名字
-\date{\today} % 也可以使用类似\date[2017/04/20]{\zhdate{2017/04/20}}的
+% \date{\today} % 也可以使用类似\date[2017/04/20]{\zhdate{2017/04/20}}的
               % 方式指定时间
 
 \author[] % (可选，仅当有多个作者时使用)
 {
-  演讲人：刘朝洋\\
+  汇报人：刘朝洋\\
   指导老师：刘斌 \\
   %\href{mailto:nangeng@qq.com}{{\tt nangeng@nwsuaf.edu.cn}}
   }
@@ -44,7 +44,7 @@
 
 \institute[
 {\includegraphics[scale=0.01]{nwsuaflogo/nwsuaf_logo_cie}}\\ %插入学院 logo
-CS of CIE, NWSUAF\\
+CIE, NWSUAF\\
 Yangling, China ] % 可选项，在每页边栏的底部显示
 {% 显示在标题页
   \cie
@@ -65,10 +65,13 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 标题页
-{\nwsuafwavesbg%
+{\nwsuafwavesbg
   \begin{frame}[plain,noframenumbering] % plain选项移除标题页的边栏和页眉
     \titlepage
-  \end{frame}}
+  \end{frame}
+}
+
+
 %%%%%%%%%%%%%%%%
 
 % 目录, 允许分页显示
@@ -79,7 +82,7 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
 %   \setbeamercolor{frametitle}{use=structure,
 % fg=structure.fg,bg=black!5}
   \tableofcontents[hideallsubsections]
-		\addtocounter{framenumber}{-1}  %目录页不计入页码
+		% \addtocounter{framenumber}{-1}  %目录页不计入页码
 \end{frame}
 %%%%%%%%%%%%%%%%
 
@@ -87,21 +90,22 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
 %%%%%%%%%%%%%%%%
 %\include{data/ch00}
 %%%%%%%%%%%%%%%%
-\section{研究背景与意义}
+\section{研究背景}
 \begin{frame}
-  \frametitle{研究背景与意义}
+  \frametitle{研究背景}
   \framesubtitle{}
   \begin{itemize}
-    \item 铅笔画生成算法被广泛应用在图像处理、游戏、动画等领域，铅笔画生成算法的提出将大大提高铅笔画生成的效率；
-    \item 目前大部分铅笔画生成算法是基于CPU实现的，其面临的主要问题是很难实现铅笔画风格的实时渲染；
-    \item 基于GPU的并行计算技术的不断发展，使得铅笔画风格的实时渲染成为可能。
+    \item 铅笔画生成算法被广泛应用在图像处理、游戏、动画等领域；
+    \item 目前大部分铅笔画生成算法是基于\textrm{CPU}实现的，其面临的主要问题是很难实现铅笔画风格的实时渲染；
+    \item 基于\textrm{GPU}的并行计算技术的不断发展，使得铅笔画风格的实时渲染成为可能。
   \end{itemize}
   \begin{figure}
     \includegraphics[width=\linewidth]{./figure/background_images.png}
   \end{figure}
 \end{frame}
 
-\section{铅笔画生成算法}
+\section{研究内容}
+% \section{铅笔画生成算法}
 \begin{frame}
   \frametitle{铅笔画生成算法}
   \framesubtitle{基本流程}
@@ -113,7 +117,7 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
   \end{figure}
 \end{frame}
 
-\section{并行分析与设计}
+% \section{并行分析与设计}
 \subsection{轮廓提取}
 \begin{frame}
   \frametitle{并行分析与设计}
@@ -123,10 +127,17 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
     % \caption{}
     % \label{}
   \end{figure}
-  % \begin{block}{总结}
-  %   多个计算任务串行执行，整体使用流水线并行的方式，各计算任务根据其并行性使用数据并行、向量化并行、共享存储器并行等方式。
-  % \end{block}
 \end{frame}
+
+% \begin{frame}
+%   \frametitle{典型算法设计过程}
+%   \framesubtitle{卷积运算}
+%   % \begin{figure}
+%   %   \includegraphics{/path/to/figure}
+%   %   \caption{}
+%   %   \label{}
+%   % \end{figure}
+% \end{frame}
 
 \subsection{纹理渲染}
 \begin{frame}
@@ -139,55 +150,17 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
   \end{figure}
 \end{frame}
 
-\section{并行实现}
-\begin{frame}
-  \frametitle{并行实现}
-  \framesubtitle{主要技术}
-  \begin{columns}
-    \begin{column}{0.2\linewidth}
-      \begin{figure}
-        \centering
-        \begin{minipage}[b]{\linewidth}
-          \includegraphics[width=\linewidth]{./figure/cuda_logo2.jpg}
-        \end{minipage}
-        \begin{minipage}[b]{\linewidth}
-          \includegraphics[width=\linewidth]{./figure/cmake_logo.png}
-        \end{minipage}
-        \begin{minipage}[b]{\linewidth}
-          \includegraphics[width=\linewidth]{./figure/opencv-logo2.png}
-        \end{minipage}
-      \end{figure}
-    \end{column}
-    \begin{column}{0.8\textwidth}
-      \onslide<+->
-      {
-      \begin{block}{}
-        算法采用\textrm{CUDA}并行编程模型实现，具有开发周期短，开发效率高等优势；
-      \end{block}
-      }
-      \onslide<+->
-      {
-      \begin{block}{}
-        使用\textrm{CUDA runtime API 8.0}实现，采用常量存储器、共享存储器、原子操作等特性；
-      \end{block}
-      }
-      \onslide<+->
-      {
-      \begin{block}{}
-        使用\textrm{CMAKE}跨平台的项目构建工具，配置方便，具有跨平台的优势；
-      \end{block}
-      }
-      \onslide<+->
-      {
-      \begin{block}{}
-        借助\textrm{OpenCV}计算机视觉库辅助完成图像的解码和编码；
-      \end{block}
-      }
-    \end{column}
-\end{columns}
-\end{frame}
+% \begin{frame}
+%   \frametitle{典型算法设计过程}
+%   \framesubtitle{直方图计算}
+%   % \begin{figure}
+%   %   \includegraphics{/path/to/figure}
+%   %   \caption{}
+%   %   \label{}
+%   % \end{figure}
+% \end{frame}
 
-\section{任务级并行}
+\subsection{任务级并行}
 \begin{frame}
   \frametitle{任务级并行}
   \framesubtitle{任务调度}
@@ -197,85 +170,212 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
     % \label{}
   \end{figure}
   \begin{block}{说明}
-    使用CUDA流技术，对无依赖性的数据计算和数据传输任务重新调度，以实现任务的重叠执行。
+    使用\textrm{CUDA}流技术，对无依赖性的数据计算和数据传输任务重新调度，以实现任务的重叠执行。
   \end{block}
 \end{frame}
 
+\subsection{并行实现}
+\begin{frame}
+  \frametitle{并行实现}
+  \framesubtitle{代码仓库}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{./figure/code_project.PNG}
+    % \caption{}
+    % \label{}
+  \end{figure}
+%   \begin{columns}
+%     \begin{column}{0.2\linewidth}
+%       \begin{figure}
+%         \centering
+%         \begin{minipage}[b]{\linewidth}
+%           \includegraphics[width=\linewidth]{./figure/cuda_logo2.jpg}
+%         \end{minipage}
+%         \begin{minipage}[b]{\linewidth}
+%           \includegraphics[width=\linewidth]{./figure/cmake_logo.png}
+%         \end{minipage}
+%         \begin{minipage}[b]{\linewidth}
+%           \includegraphics[width=\linewidth]{./figure/opencv-logo2.png}
+%         \end{minipage}
+%       \end{figure}
+%     \end{column}
+%     \begin{column}{0.8\textwidth}
+%       \begin{block}{}
+%         算法采用\textrm{CUDA}并行编程模型实现，具有开发周期短，开发效率高等优势；
+%       \end{block}
+%
+%       \begin{block}{}
+%         使用\textrm{CUDA runtime API 8.0}实现，采用常量存储器、共享存储器、原子操作等特性；
+%       \end{block}
+%
+%       \begin{block}{}
+%         使用\textrm{CMAKE}跨平台的项目构建工具，配置方便，具有跨平台的优势；
+%       \end{block}
+%
+%       \begin{block}{}
+%         借助\textrm{OpenCV}计算机视觉库辅助完成图像的解码和编码；
+%       \end{block}
+%     \end{column}
+% \end{columns}
+\end{frame}
 
 \section{实验结果与分析}
+\begin{frame}
+  \frametitle{实验结果与分析}
+  \framesubtitle{实验数据集}
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=\linewidth]{./figure/test-01.jpg}
+        \caption{水波潋滟}
+        % \label{}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=\linewidth]{./figure/test-03.jpg}
+        \caption{枯藤老树}
+        % \label{}
+      \end{figure}
+    \end{column}
+  \end{columns}
+  \begin{block}{注}
+    图片来自香港中文大学铅笔画生成算法测试数据集，由于篇幅原因这里只展示两张图片的实验结果。
+  \end{block}
+\end{frame}
 
 \subsection{算法效果}
+
 \begin{frame}
   \frametitle{实验结果与分析}
   \framesubtitle{算法效果}
-  \begin{figure}[!h]
-    \centering
-    \begin{minipage}[t]{0.45\linewidth}
-      \centering
-      \includegraphics[width=1\linewidth]{./figure/test-01.jpg}
-      \caption{原始图像}
-    \end{minipage}
-     \hspace{5ex}
-    \begin{minipage}[t]{0.45\linewidth}
-      \centering
-      \includegraphics[width=1\linewidth]{./figure/thesis_rst-01.png}
-      \caption{生成的铅笔画}
-    \end{minipage}
-  % \label{算法处理效果}
-\end{figure}
-  \begin{block}{结论}
-    算法处理的结果线条富于变化，具有线条交叉的效果，而且纹理细腻，具有铅笔画的阴影效果，因此该结果比较接近真实的铅笔画。
-  \end{block}
+\begin{columns}
+  \begin{column}{0.5\linewidth}
+    \begin{figure}
+      \includegraphics[width=\linewidth]{./figure/thesis_rst-01.png}
+      \caption{“水波潋滟”铅笔画结果}
+      % \label{}
+    \end{figure}
+  \end{column}
+  \begin{column}{0.5\linewidth}
+    \begin{figure}
+      \includegraphics[width=\linewidth]{./figure/thesis_rst-03.png}
+      \caption{“枯藤老树”铅笔画结果}
+      % \label{}
+    \end{figure}
+  \end{column}
+\end{columns}
+\begin{block}{结论}
+  处理结果的线条富于变化，具有线条交叉的效果，而且纹理细腻，表现出了铅笔画的光线与阴影效果，比较接近真实的铅笔画。
+\end{block}
 \end{frame}
 
 \subsection{定量分析}
 \begin{frame}
-        \frametitle{实验结果与分析}
-        \framesubtitle{定量分析}
-        \begin{figure}[!h]
-          \centering
-          \begin{minipage}[t]{0.45\linewidth}
-            \centering
-            \includegraphics[width=1\linewidth]{./figure/sketch_hist-01.png}
-            \caption{实际铅笔画色调分布图}
-          \end{minipage}
-          \hspace{5ex}
-          \begin{minipage}[t]{0.45\linewidth}
-            \centering
-            \includegraphics[width=1\linewidth]{./figure/thesis_hist-01.png}
-            \caption{生成铅笔画的色调分布图}
-          \end{minipage}
-        \end{figure}
-        \begin{block}{结论}
-          本算法生成的铅笔画的色调分布图和实际铅笔画色调分布图的大致相同，因此可以得出本算法生成的铅笔画与实际铅笔画十分接近。
-        \end{block}
+  \frametitle{定量分析指标}
+  \framesubtitle{色调分布图}
+  \begin{figure}
+    \includegraphics[width=0.6\linewidth]{./figure/sketch_hist-01.png}
+    \caption{实际铅笔画色调分布图}
+    % \label{}
+  \end{figure}
+  \begin{block}{}
+    \textrm{Li Cewu}等人通过对实际铅笔画的大量分析，建立了实际铅笔画的色调分布模型，如上图所示为该模型的色调分布图。
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{实验结果与分析}
+  \framesubtitle{定量分析}
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=1\linewidth]{./figure/thesis_hist-01.png}
+        \caption{“水波潋滟”铅笔画色调分布图}
+        % \label{}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=1\linewidth]{./figure/thesis_hist-02.png}
+        \caption{“枯藤老树”铅笔画色调分布图}
+        % \label{}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  \begin{block}{结论}
+    本算法生成的铅笔画的色调分布图和实际铅笔画色调分布图的大致相同，因此可以得出本算法生成的铅笔画与实际铅笔画十分接近。
+  \end{block}
 \end{frame}
 
 \subsection{运行时间与加速比}
 \begin{frame}
   \frametitle{实验结果与分析}
-  \framesubtitle{运行时间与加速比}
-    \begin{figure}
-      \includegraphics[scale=0.5]{./figure/run_time-02.png}
-      \caption{算法处理时间折线图}
-      % \label{}
-    \end{figure}
+  \framesubtitle{运行时间}
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=1\linewidth]{./figure/runtime_figure1.png}
+        \caption{图“水波潋滟”实验结果}
+        % \label{}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=1\linewidth]{./figure/runtime_figure2.png}
+        \caption{图“枯藤老树”实验结果}
+        % \label{}
+      \end{figure}
+    \end{column}
+  \end{columns}
     \begin{block}{结论}
-      使用CUDA流技术的GPU算法不受图片大小的影响，处理速度远远大于CPU串行算法，满足实时处理的要求。
+      \textrm{GPU}并行程序的处理速度远快于\textrm{CPU}串行程序，加速比达10以上，而且运行时间稳定，不受图片大小的影响，满足实时渲染的要求。
     \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{实验结果与分析}
+  \framesubtitle{加速比}
+  \begin{table}
+    \centering
+    \caption{两种GPU算法的平均加速比}
+    \begin{tabular}{ccc}
+      \toprule[1pt]
+         图片大小 & \textrm{GPU(No-Stream)} & \textrm{GPU(Stream)}	\\
+      \midrule
+      256x192	&1.78&	9.23 \\
+      512x384	&4.68&	22.53 \\
+      768x576	&9.32&	44.50 \\
+      1024x768 &	16.22&	80.59 \\
+      1280x960	& 25.15&	120.32 \\
+      \bottomrule[1pt]
+    \end{tabular}
+  \end{table}
+  \begin{block}{结论}
+    使用\textrm{CUDA}流技术的\textrm{GPU}算法的加速比大于未使用\textrm{CUDA}流的算法，前者大概为后者的5倍左右，因此使用\textrm{CUDA}流技术可以大大加快程序运行速度。
+  \end{block}
 \end{frame}
 
 \section{总结与展望}
 \begin{frame}
   \frametitle{总结与展望}
   \framesubtitle{}
+  \begin{block}{总结}
+    本文针对目前铅笔画生成算法实时效果差的问题，提出了一种基于CUDA的并行快速铅笔画生成算法，这种算法不仅可以获得逼真的铅笔画效果，而且处理速度快，满足实时渲染的要求，在游戏、动画等领域具有广泛的应用前景。
+  \end{block}
+  \begin{block}{展望}
+    目前本算法只能生成单色调铅笔画，可以将算法适当改进以实现彩色铅笔画的生成。
+  \end{block}
 \end{frame}
 
-{\nwsuafwavesbg
+{
+\nwsuafwavesbg
   \begin{frame}[plain,noframenumbering]
     \finalpage{感谢您的聆听！\\欢迎多提宝贵意见和建
       议！}
-  \end{frame}}
+  \end{frame}
+}
 %%%%%%%%%%%%%%%%
 \end{document}
 

@@ -65,7 +65,8 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 标题页
-{\nwsuafwavesbg
+{
+% \nwsuafwavesbg
   \begin{frame}[plain,noframenumbering] % plain选项移除标题页的边栏和页眉
     \titlepage
   \end{frame}
@@ -150,15 +151,15 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
   \end{figure}
 \end{frame}
 
-% \begin{frame}
-%   \frametitle{典型算法设计过程}
-%   \framesubtitle{直方图计算}
-%   % \begin{figure}
-%   %   \includegraphics{/path/to/figure}
-%   %   \caption{}
-%   %   \label{}
-%   % \end{figure}
-% \end{frame}
+\begin{frame}
+  \frametitle{典型算法设计过程}
+  \framesubtitle{卷积运算}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{./figure/convolution_proc.png}
+    % \caption{}
+    % \label{}
+  \end{figure}
+\end{frame}
 
 \subsection{任务级并行}
 \begin{frame}
@@ -183,6 +184,9 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
     \includegraphics[width=\linewidth]{./figure/code_project.PNG}
     % \caption{}
     % \label{}
+    \begin{block}{url}
+      \url{https://github.com/Fibird/cuda_pencildraw}
+    \end{block}
   \end{figure}
 %   \begin{columns}
 %     \begin{column}{0.2\linewidth}
@@ -370,7 +374,7 @@ Yangling, China ] % 可选项，在每页边栏的底部显示
 \end{frame}
 
 {
-\nwsuafwavesbg
+% \nwsuafwavesbg
   \begin{frame}[plain,noframenumbering]
     \finalpage{感谢您的聆听！\\欢迎多提宝贵意见和建
       议！}
